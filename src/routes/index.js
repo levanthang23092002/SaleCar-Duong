@@ -41,4 +41,7 @@ router.post('/send-email', async (req, res) => {
         res.json({ success: false, error: error.message });
     }
 });
+router.get('/quan-li', (req, res) => {
+    res.render('pages/dashboard')
+})
 module.exports = router

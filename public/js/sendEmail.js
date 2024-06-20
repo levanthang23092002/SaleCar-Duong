@@ -20,8 +20,8 @@ exports.sendEmailService = async (data) => {
         });
 
         let info = await transporter.sendMail({
-            from:process.env.email , // sender address
-            to: 'thangcatre230903@gmail.com', // list of receivers
+            from: process.env.email , // sender address
+            to: process.env.email, // list of receivers
             subject: "Liên Hệ Mua Xe ISUZU",
             html: `
         <!DOCTYPE html>
@@ -79,7 +79,7 @@ exports.sendEmailService = async (data) => {
         <body>
             <div class="container">
                 <div class="header">
-                <img src="https://www.facebook.com/photo/?fbid=795776015908673&set=a.443098641176414" alt="Company Logo">
+                <img src="http://isuzudanang.com.vn/public/img/logo1.png" alt="Company Logo">
                 </div>
                 <div class="content">
                     <h1 >Thư Liên Hệ Từ Website!</h1>

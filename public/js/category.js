@@ -68,7 +68,9 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             if(count1 === 0){
                 const carElement = document.createElement('div');
-                carElement.innerHTML =`
+                    carElement.classList.add( 'noproduct');
+                    
+                    carElement.innerHTML = `
                 <div>Không Có Sản Phẩm</div>
                 `;
                 carListElement.appendChild(carElement);

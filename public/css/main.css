@@ -105,13 +105,62 @@ h6 {
   color: var(--contrast-color);
 }
 
+.social-links .txt{
+  font-size: 22px !important;
+  width: auto !important;
+}
 @media (max-width: 575px) {
+  .header .topbar {
+    height: 100px;
+  }
+ 
+  .header .topbar .contact-info{
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .header .topbar .contact-info i a,
-  .header .topbar .contact-info i span {
+  .header .topbar .contact-info i span{
     font-size: 13px;
+    
     text-align: center;
   }
+  
+  .hosting {
+    font-size: 13px;
+    height: 0px;
+    margin: 0px !important;
+    text-align: center;
+    visibility: hidden;
+  }
+  .topbar .container {
+    flex-direction: column !important; /* Stack the divs vertically */
+  }
+  .contact-info,
+  .social-links {
+    width: 100%; /* Ensure each div takes full width */
+    margin-bottom: 10px; /* Add some space between the divs */
+  }
+ .social-links {
+  
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* Allows the items to wrap to the next line */
 }
+
+
+.social-links .txt{
+  font-size: 16px !important;
+  width: auto !important;
+}
+
+  
+}
+
+
+
+
 
 .header .topbar .contact-info i a {
   line-height: 1;
@@ -123,7 +172,10 @@ h6 {
   color: var(--contrast-color);
   text-decoration: underline;
 }
-
+.header .topbar .social-links{
+  visibility: none;
+  display: none;
+}
 .social-links .img {
   width: 40px;
   height: 40px;
@@ -439,7 +491,11 @@ h6 {
   .mobile-nav-active .navmenu > ul {
     display: block;
   }
+  .navmenu .dropdown img{
+    width: 50px;
+  }
 }
+
 
 /*--------------------------------------------------------------
 # Global Footer
@@ -595,9 +651,10 @@ h6 {
   padding-bottom: 12px;
 }
 
-.footer .footer-links {
-  margin-bottom: 30px;
-}
+  .footer .footer-links {
+    margin-bottom: 30px;
+    
+  }
 
 .footer .footer-links ul {
   list-style: none;
@@ -663,6 +720,22 @@ h6 {
 .footer-about img {
   width: 180px; /* Độ rộng của ảnh */
   height: auto; /* Chiều cao tự động để duy trì tỷ lệ khung hình */
+}
+@media (max-width: 575px) {
+  .footer .footer-about{
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Aligns children elements horizontally center */
+    text-align: center; 
+  }
+  .footer .footer-links {
+    width: 40% !important;
+    margin-left: auto;
+    padding-left: auto;
+    padding-right: auto;
+    
+  }
+  
 }
 
 /*--------------------------------------------------------------
@@ -1071,6 +1144,7 @@ section,
   color: var(--heading-color);
   margin: 10px 0 0 0;
   font-size: 32px;
+  margin-bottom: 10px;
   font-weight: 700;
   font-family: var(--heading-font);
 }
@@ -1474,7 +1548,18 @@ section,
   transform: scale(1.1);
 }
 
-
+@media (max-width: 575px) {
+  .clients .swiper-slide{
+    margin-right: 5px;
+  }
+  .clients .swiper-slide img {
+    transition: 0.3s;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+}
 /*--------------------------------------------------------------
 # Team Section
 --------------------------------------------------------------*/
@@ -1482,7 +1567,11 @@ section,
 .team {
   --background-color: color-mix(in srgb, var(--accent-color), transparent 96%);
 }
-
+.team .noproduct{
+  text-align: center;
+  margin-top: 30px;
+  color: var(--default-color-p);
+}
 .team .team-member {
   margin-top: 12px;
   box-shadow: 0px 2px 15px
@@ -1593,7 +1682,22 @@ span#key {
 .team .team-member:hover .social {
   opacity: 1;
 }
-
+@media (max-width: 575px) {
+   .team .row{
+    margin-left: auto;
+    margin-right: auto;
+   }
+  .team .team-member {
+    margin-top: 17px;
+    box-shadow: 0px 2px 15px
+    color-mix(in srgb, var(--default-color), transparent 90%);
+    overflow: hidden;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  
+  }
+}
 
 
 /*--------------------------------------------------------------
@@ -1845,9 +1949,10 @@ span#key {
   flex-wrap: wrap;
   
 }
+
 .service-details .new-Lq1{
   flex: 0 0 calc(33% - 20px);
-  margin-top: 50px;
+  margin-top: 40px;
   margin: 0.9%;
   padding: 30px 30px;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
@@ -1914,10 +2019,25 @@ span#key {
   margin-right: 8px;
   color: var(--accent-color);
 }
+@media (max-width: 575px) {
+  .service-details .container{
+    display: block ;
+    flex-wrap: wrap;
+    
+  }
+  .service-details .new-Lq1{
+    flex: 0 0 calc(90% - 5%);
+    margin-top: 20px;
+  }
+  .service-details .col-lg-4{
+    display: none;
+  }
+}
 
 /*--------------------------------------------------------------
 # Portfolio Details Section
 --------------------------------------------------------------*/
+
 .portfolio-details .portfolio-details-slider .swiper-slide img {
   width: 100%;
   height: auto;
