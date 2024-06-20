@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Trang Chủ</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="../public/img/iconlogo.png" rel="icon" />
+    <link href="../public/img/iconlogo.png" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="../public/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../public/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="../public/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="../public/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="../public/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="../public/css/main.css" rel="stylesheet" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <!-- =======================================================
+  * Template Name: BizLand
+  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+  * Updated: Jun 06 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body class="index-page">
+    <%- include('./partials/header'); %>
+
+    <main class="main">
+      <!-- Hero Section -->
+     
+       
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://isuzudanang.net/image/banner02.jpg" class="d-block w-100" alt="Slide 1">
+            </div>
+            <div class="carousel-item">
+              <img src="https://isuzudanang.net/image/banner01.jpg" class="d-block w-100" alt="Slide 2">
+            </div>
+            <div class="carousel-item">
+              <img src="https://isuzudanang.net/image/isuzu-e5.jpg" class="d-block w-100" alt="Slide 3">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+  
+
+      <!-- Featured Services Section -->
+      <section id="featured-services" class="featured-services section">
+        <div class="container">
+          <div class="row gy-3 gap-4 row-item">
+            <div class="col " >
+              <div class="main_item px-4 py-4 text-center">
+                  <div>
+                    <a href="/lien-he"><i class="bi bi-cash-coin size-icon"></i></a>
+                  </div>
+                  <div class="body">
+                    <a href="/lien-he"><h5>Yêu Cầu Báo Giá</h5></a>
+                    <p>Bạn đang tìm kiếm một chiếc xe phù hợp với nhu cầu và ngân sách của mình? </p>
+                  </div>
+              </div>
+            </div>
+            <div class="col " >
+              <div class="main_item px-4 py-4 text-center">
+                  <div>
+                    <a href="/lien-he"><i class="bi bi-ubuntu size-icon"></i></a>
+                  </div>
+                  <div class="body">
+                    <a href="/lien-he"><h5>Đăng Kí Lái Thử</h5></a>
+                    <p>Bạn đã sẵn sàng trải nghiệm cảm giác lái thử trên những chiếc xe mới nhất trên thị trường chưa? </p>
+                  </div>
+              </div>
+            </div>
+            <div class="col " >
+              <div class="main_item px-4 py-4 text-center">
+                  <div>
+                    <a href="/lien-he"><i class="bi bi-telephone size-icon"></i></a>
+                  </div>
+                  <div class="body">
+                    <a href="/lien-he"><h5>Tư Vấn Trả Góp</h5></a>
+                    <p>Bạn đang muốn sở hữu một chiếc xe mới mà không muốn gánh nặng tài chính lớn? </p>
+                  </div>
+              </div>
+            </div>
+            
+          </div>
+          <div class="row gy-4">
+            <div
+              class="col-xl-3 col-md-6 d-flex"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="service-item position-relative">
+                <div class="icon"><i class="bi bi-ubuntu icon"></i></div>
+                <h4><a href="/lien-he" class="stretched-link">ĐĂNG KÝ LÁI THỬ</a></h4>
+                <p>
+                  Trải nghiệm cảm giác lái thử cùng ISUZU… để nhận những phần
+                  quà hấp dẫn.
+                </p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div
+              class="col-xl-3 col-md-6 d-flex"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <div class="service-item position-relative">
+                <div class="icon"><i class="bi bi-cash-coin icon"></i></div>
+                <h4><a href="/tra-gop" class="stretched-link">MUA XE TRẢ GÓP</a></h4>
+                <p>
+                  Bảng dự trù chi phí để xe lăn bánh. Hỗ trợ mua xe đến 80% từ
+                  1-7 năm với lãi suất ưu đãi.
+                </p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div
+              class="col-xl-3 col-md-6 d-flex"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div class="service-item position-relative">
+                <div class="icon">
+                  <i class="bi bi-car-front-fill icon"></i>
+                </div>
+                <h4><a href="/bang-gia" class="stretched-link">BẢNG GIÁ XE</a></h4>
+                <p>
+                  Bảng giá các dòng xe: ISUZU D-MAX, ISUZU MU-X, XE TẢI ISUZU Q
+                  SERIES, XE TẢI ISUZU N SERIES.
+                </p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div
+              class="col-xl-3 col-md-6 d-flex"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <div class="service-item position-relative">
+                <div class="icon">
+                  <i class="bi bi-gear-wide-connected icon"></i>
+                </div>
+                <h4>
+                  <a href="" class="stretched-link">ĐẶT LỊCH BẢO DƯỠNG</a>
+                </h4>
+                <p>
+                  Bảo dưỡng các dòng xe: ISUZU D-MAX, ISUZU MU-X, XE TẢI ISUZU Q
+                  SERIES, XE TẢI ISUZU N SERIES.
+                </p>
+              </div>
+            </div>
+            <!-- End Service Item -->
+          </div>
+        </div>
+      </section> 
+      <!-- /Featured Services Section -->
+
+      <!-- Stats Section -->
+      <section id="stats" class="stats section">
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="row gy-4">
+            <div
+              class="col-lg-3 col-md-6 d-flex flex-column align-items-center"
+            >
+              <i class="bi bi-emoji-smile"></i>
+              <div class="stats-item">
+                <span
+                  data-purecounter-start="0"
+                  data-purecounter-end="1492"
+                  data-purecounter-duration="1"
+                  class="purecounter"
+                ></span>
+                <p>Hài Lòng</p>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+
+            <div
+              class="col-lg-3 col-md-6 d-flex flex-column align-items-center"
+            >
+              <i class="bi bi-journal-richtext"></i>
+              <div class="stats-item">
+                <span
+                  data-purecounter-start="0"
+                  data-purecounter-end="521"
+                  data-purecounter-duration="1"
+                  class="purecounter"
+                ></span>
+                <p>Số Lượng Xe</p>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+
+            <div
+              class="col-lg-3 col-md-6 d-flex flex-column align-items-center"
+            >
+              <i class="bi bi-headset"></i>
+              <div class="stats-item">
+                <span
+                  data-purecounter-start="0"
+                  data-purecounter-end="1463"
+                  data-purecounter-duration="1"
+                  class="purecounter"
+                ></span>
+                <p>Liên hệ Hỗ Trợ</p>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+
+            <div
+              class="col-lg-3 col-md-6 d-flex flex-column align-items-center"
+            >
+              <i class="bi bi-people"></i>
+              <div class="stats-item">
+                <span
+                  data-purecounter-start="0"
+                  data-purecounter-end="15"
+                  data-purecounter-duration="1"
+                  class="purecounter"
+                ></span>
+                <p>Nhân Viên</p>
+              </div>
+            </div>
+            <!-- End Stats Item -->
+          </div>
+        </div>
+      </section>
+      <!-- /Stats Section -->
+      <!-- Team Section -->
+      <section id="team" class="team section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>New</h2>
+          <p>
+            <span>ISUZU </span>
+            <span class="description-title">2024</span>
+          </p>
+        </div>
+        <!-- End Section Title -->
+
+        <div class="container">
+          <div class="row gy-4">
+            <div class="row" id="carList">
+              <!-- Placeholder for car data -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Clients Section -->
+      <section id="clients" class="clients section">
+        <div class="container">
+          <div class="swiper">
+            <script type="application/json" class="swiper-config">
+              {
+                "loop": true,
+                "speed": 600,
+                "autoplay": {
+                  "delay": 5000
+                },
+                "slidesPerView": "auto",
+                "pagination": {
+                  "el": ".swiper-pagination",
+                  "type": "bullets",
+                  "clickable": true
+                },
+                "breakpoints": {
+                  "320": {
+                    "slidesPerView": 2,
+                    "spaceBetween": 40
+                  },
+                  "480": {
+                    "slidesPerView": 3,
+                    "spaceBetween": 60
+                  },
+                  "640": {
+                    "slidesPerView": 4,
+                    "spaceBetween": 80
+                  },
+                  "992": {
+                    "slidesPerView": 6,
+                    "spaceBetween": 120
+                  }
+                }
+              }
+            </script>
+            <div class="swiper-wrapper align-items-center">
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/logo1.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/img2.jpg"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/img3.jpg"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/img4.jpg"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/img5.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/img6.jpg"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/logo1.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/img2.jpg"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/img3.jpg"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/img4.jpg"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/img5.png"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="../public/img/clients/img6.jpg"
+                  class="img-fluid"
+                  alt=""
+                />
+              </div>
+              
+              
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Clients Section -->
+    </main>
+
+    <%- include('./partials/footer'); %>
+
+    <!-- Scroll Top -->
+    <a
+      href="#"
+      id="scroll-top"
+      class="scroll-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+    <a href="https://zalo.me/0375584211" id="scroll-top" class="scroll-top-zalo d-flex align-items-center justify-content-center">
+      <img src="../public/img/logozalo.png" alt="Zalo Logo">
+    </a>
+    <a href="tel:84375584211" id="scroll-top" class="scroll-top-phone d-flex align-items-center justify-content-center">
+      <i class="bi bi-telephone-fill"></i>
+    </a>
+    <!-- Preloader -->
+
+    <!-- Vendor JS Files -->
+    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/vendor/php-email-form/validate.js"></script>
+    <script src="../public/vendor/aos/aos.js"></script>
+    <script src="../public/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../public/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="../public/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../public/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../public/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="../public/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="../public/js/main.js"></script>
+    <script src="../public/js/index.js"></script>
+  </body>
+</html>

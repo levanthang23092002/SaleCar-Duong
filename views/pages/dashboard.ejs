@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Management Dashboard</title>
+  <meta content="" name="description" />
+  <meta content="" name="keywords" />
+
+  <!-- Favicons -->
+  <link href="assets/img/iconlogo.png" rel="icon" />
+  <link href="assets/img/iconlogo.png" rel="apple-touch-icon" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <img src="assets/img/logo1.png" alt="Logo" />
+    </div>
+    <div class="dashboard">
+      <h1>Dashboard</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="navbar">
+      <button id="addBtn">Thêm sản Phẩm</button>
+      <button id="updateBtn">Sửa Sản Phẩm</button>
+      <button id="deleteBtn">Xóa Sản Phẩm</button>
+    </div>
+
+    <div id="forms">
+      <!-- Add Car Form -->
+      <form id="addCarForm" class="hidden">
+        <h2>Thêm Xe Mới</h2>
+        <div class="form-group">
+          <label for="key">Key:</label>
+          <input type="text" id="key" name="key" />
+          <label for="oldPrice">Old Price:</label>
+          <input type="text" id="oldPrice" name="oldPrice" />
+        </div>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" />
+          <label for="newPrice">New Price:</label>
+          <input type="text" id="newPrice" name="newPrice" />
+        </div>
+        <div class="form-group">
+          <label for="category">Danh Mục:</label>
+          <input type="text" id="category" name="category">
+          <div class="dropdown-content" id="dropdownContent"></div>
+          <label for="power">Công Suất:</label>
+          <input type="text" id="power" name="power" />
+        </div>
+        <div class="form-group">
+          <label for="payload">Tải Trọng:</label>
+          <input type="text" id="payload" name="payload" />
+          <label for="totalpayload">Tải Trọng:</label>
+          <input type="text" id="totalpayload" name="totalpayload" />
+        </div>
+        <div class="form-group">
+          <label for="size">Kích Thước Xe:</label>
+          <input type="text" id="size" name="size" />
+          <label for="carbin">Lọt lòng thùng:</label>
+          <input type="text" id="carbin" name="carbin" />
+          
+        </div>
+        <div class="form-group">
+          <label for="imageLink">Link Ảnh 1:</label>
+          <input type="text" id="imageLink" name="imageLink" />
+          <label for="imageLink2">Link Ảnh 2:</label>
+          <input type="text" id="imageLink2" name="imageLink2" />
+        </div>
+        <div class="form-group">
+          <label for="imageLink3">Link Ảnh 3:</label>
+          <input type="text" id="imageLink3" name="imageLink3" />
+          <label for="imageLink4">Link Ảnh 4:</label>
+          <input type="text" id="imageLink4" name="imageLink4" />
+        </div>
+        <div class="form-group">
+          <label for="detail">Mô Tả :</label>
+          <input class="detail" type="text" id="detail" name="detail" />
+        </div>
+        <button type="submit">Thêm Xe</button>
+      </form>
+
+      <!-- Update Car Form -->
+      <form id="updateCarForm" class="hidden" autocomplete="off">
+        <h2>Cập Nhật Thông Tin Xe</h2>
+        <div class="form-group">
+          <label for="updateKey">Key:</label>
+          <input type="text" id="updateKey" name="updateKey" />
+          <label for="updateOldPrice">Old Price:</label>
+          <input type="text" id="updateOldPrice" name="updateOldPrice" />
+        </div>
+        <div class="form-group">
+          <label for="updateName">Name:</label>
+          <input type="text" id="updateName" name="updateName" />
+          <label for="updateNewPrice">New Price:</label>
+          <input type="text" id="updateNewPrice" name="updateNewPrice" />
+        </div>
+        <div class="form-group">
+          <label for="updateCategory">Danh Mục:</label>
+          <input type="text" id="updateCategory" name="updateCategory" />
+          <div class="dropdown-content" id="dropdownContent1"></div>
+          <label for="updatePower">Công Suất:</label>
+          <input type="text" id="updatePower" name="updatePower" />
+        </div>
+        <div class="form-group">
+          <label for="updatepayload">Tải Trọng:</label>
+          <input type="text" id="updatepayload" name="updatepayload" />
+          <label for="updatetotalpayload">Tải Trọng:</label>
+          <input type="text" id="updatetotalpayload" name="updatetotalpayload" />
+        </div>
+        <div class="form-group">
+          <label for="updatesize">Kích Thước Xe:</label>
+          <input type="text" id="updatesize" name="updatesize" />
+          <label for="updatecarbin">Lọt lòng thùng:</label>
+          <input type="text" id="updatecarbin" name="updatecarbin" />
+          
+        </div>
+        <div class="form-group">
+          <label for="updateImageLink1">Link Ảnh 1:</label>
+          <input type="text" id="updateImageLink1" name="updateImageLink1" />
+          <label for="updateImageLink2">Link Ảnh 2:</label>
+          <input type="text" id="updateImageLink2" name="updateImageLink2" />
+        </div>
+        <div class="form-group">
+          <label for="updateImageLink3">Link Ảnh 3:</label>
+          <input type="text" id="updateImageLink3" name="updateImageLink3" />
+          <label for="updateImageLink4">Link Ảnh 4:</label>
+          <input type="text" id="updateImageLink4" name="updateImageLink4" />
+        </div>
+        <div class="form-group">
+          <label for="updatedetail">Mô Tả</label>
+          <input class="detail" type="text" id="updatedetail" name="updatedetail" />
+        </div>
+        <button type="submit">Cập Nhật Xe</button>
+      </form>
+
+      <!-- Delete Car Form -->
+      <form id="deleteCarForm" class="hidden" autocomplete="off">
+        <h2>Xóa Xe</h2>
+        <div class="form-group">
+          <label for="deleteKey">Key:</label>
+          <input type="text" id="deleteKey" name="deleteKey" />
+        </div>
+        <button type="submit">Xóa Xe</button>
+      </form>
+
+      <h2>Danh Sách Xe</h2>
+      <table id="carTable">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Name</th>
+            <th>Old Price</th>
+            <th>New Price</th>
+            <th>Category</th>
+            <th>Power</th>
+            <th>Payload</th>
+            <th>Size</th>
+          </tr>
+        </thead>
+        <tbody id="carList"></tbody>
+      </table>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./assets/js/dackboard.js"></script>
+</body>
+</html>

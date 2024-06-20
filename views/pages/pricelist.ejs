@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bảng Giá</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="../public/img/iconlogo.png" rel="icon" />
+    <link href="../public/img/iconlogo.png" rel="apple-touch-icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="../public/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../public/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="../public/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="../public/vendor/glightbox/css/glightbox.min.css"
+      rel="stylesheet"
+    />
+    <link href="../public/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="../public/css/main.css" rel="stylesheet" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <!-- =======================================================
+  * Template Name: BizLand
+  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+  * Updated: Jun 06 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body class="index-page">
+    <%- include('./partials/header'); %>
+
+    <main class="main">
+       <!-- Page Title -->
+       <div class="page-title" data-aos="fade">
+        <div class="container d-lg-flex justify-content-between align-items-center">
+          <h1 class="mb-2 mb-lg-0">Bảng Giá</h1>
+          <nav class="breadcrumbs">
+            <ol>
+              <li><a href="\">Trang Chủ</a></li>
+              <li class="current">Bảng Giá</li>
+            </ol>
+          </nav>
+        </div>
+        </div><!-- End Page Title -->
+      <section class="price-list">
+        <div class="text-center container py-5">
+            
+    
+            <div class="row"id="carList">
+            </div>
+            <!-- Add more rows as needed -->
+        </div>
+    </section>
+    
+      
+    </main>
+
+    <%- include('./partials/footer'); %>
+
+    <!-- Scroll Top -->
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="https://zalo.me/0375584211" id="scroll-top" class="scroll-top-zalo d-flex align-items-center justify-content-center">
+      <img src="../public/img/logozalo.png" alt="Zalo Logo">
+    </a>
+    <a href="tel:84375584211" id="scroll-top" class="scroll-top-phone d-flex align-items-center justify-content-center">
+      <i class="bi bi-telephone-fill"></i>
+    </a>
+
+    <!-- Preloader -->
+
+    <!-- Vendor JS Files -->
+    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/vendor/php-email-form/validate.js"></script>
+    <script src="../public/vendor/aos/aos.js"></script>
+    <script src="../public/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../public/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="../public/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../public/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="../public/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="../public/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+    <!-- Main JS File -->
+    <script src="../public/js/main.js"></script>
+    <script src="../public/js/pricelist.js"></script>
+    
+  </body>
+</html>
