@@ -11,21 +11,21 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const carListElement = document.getElementById('carList');
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const database = firebase.database();
     const carRef = database.ref('cars/');
     var selectedItem = localStorage.getItem("selectedItem");
     if (selectedItem) document.getElementById("category").textContent = selectedItem;
     // Kiểm tra xem dữ liệu có tồn tại không
-    if(selectedItem) {
-        carRef.once('value', function(snapshot) {
+    if (selectedItem) {
+        carRef.once('value', function (snapshot) {
             let count1 = 0;
-            snapshot.forEach(function(childSnapshot) {
+            snapshot.forEach(function (childSnapshot) {
                 const carData = childSnapshot.val();
-                
+
                 // Kiểm tra xem thư mục của xe có phải là ISUZU MU-X không
                 if (carData.category == selectedItem) {
-                    count1 =count1 + 1 ;
+                    count1 = count1 + 1;
                     const carElement = document.createElement('div');
                     carElement.classList.add('col-lg-3', 'col-md-6', 'd-flex', 'align-items-stretch');
                     carElement.setAttribute('data-aos', 'fade-up');
@@ -52,9 +52,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     // Lắng nghe sự kiện click của nút nhận dữ liệu
                     const getDataButton = carElement.querySelector('.getDataButton');
-                    getDataButton.addEventListener('click', function() {
+                    getDataButton.addEventListener('click', function () {
                         const keyValue = carElement.querySelector('.key').innerText;
-                        carRef.child(keyValue).once("value", function(snapshot) {
+                        carRef.child(keyValue).once("value", function (snapshot) {
                             var xe1 = snapshot.val();
                             localStorage.setItem("xe1Data", JSON.stringify(xe1));
 
@@ -66,17 +66,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 }
             });
-            if(count1 === 0){
+            if (count1 === 0) {
                 const carElement = document.createElement('div');
-                    carElement.classList.add( 'noproduct');
-                    
-                    carElement.innerHTML = `
+                carElement.classList.add('noproduct');
+
+                carElement.innerHTML = `
                 <div>Không Có Sản Phẩm</div>
                 `;
                 carListElement.appendChild(carElement);
             }
         });
-        
+
     } else {
         console.log("Không có dữ liệu được lưu trữ.");
     }
