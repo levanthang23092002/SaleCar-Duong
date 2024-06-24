@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { sendEmailService } = require('../../public/js/sendEmail');
 
+
+
+
 router.get('/', (req, res) => {
     res.render('pages/index')
 })
@@ -41,7 +44,10 @@ router.post('/send-email', async (req, res) => {
         res.json({ success: false, error: error.message });
     }
 });
-router.get('/quan-li', (req, res) => {
+router.get('/quan-li',(req, res) => {
     res.render('pages/dashboard')
+})
+router.get('/dang-nhap', (req, res) => {
+    res.render('pages/login')
 })
 module.exports = router

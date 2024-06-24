@@ -18,6 +18,8 @@ const updateCarForm = document.getElementById('updateCarForm');
 const deleteCarForm = document.getElementById('deleteCarForm');
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    isTokenValid("token");
     const addBtn = document.getElementById('addBtn');
     const updateBtn = document.getElementById('updateBtn');
     const deleteBtn = document.getElementById('deleteBtn');
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addCarForm = document.getElementById('addCarForm');
     const updateCarForm = document.getElementById('updateCarForm');
     const deleteCarForm = document.getElementById('deleteCarForm');
-    
+     
 
     const forms = [addCarForm, updateCarForm, deleteCarForm];
 
@@ -65,6 +67,7 @@ function showAlert(message) {
 
 // Add car to Firebase when form is submitted
 document.getElementById('addCarForm').addEventListener('submit', (e) => {
+    isTokenValid("token");
     e.preventDefault();
     const key = document.getElementById('key').value;
     const name = document.getElementById('name').value;
@@ -119,6 +122,7 @@ document.getElementById('addCarForm').addEventListener('submit', (e) => {
 
 // Update car in Firebase when form is submitted
 document.getElementById('updateCarForm').addEventListener('submit', (e) => {
+    isTokenValid("token");
     e.preventDefault();
     const key = document.getElementById('updateKey').value;
     const name = document.getElementById('updateName').value;
@@ -162,7 +166,7 @@ document.getElementById('updateCarForm').addEventListener('submit', (e) => {
                 imageLink2: imageLink2,
                 imageLink3: imageLink3,
                 imageLink4: imageLink4,
-                updatedetail:updatedetail
+                detail:updatedetail
             }).then(() => {
                 loadCarList(); // Update car list after updating
             });
@@ -257,6 +261,7 @@ loadCarList();
 
 // Delete car from Firebase when form is submitted
 deleteCarForm.addEventListener('submit', (e) => {
+    isTokenValid("token");
     e.preventDefault();
     const key = document.getElementById('deleteKey').value;
     if (!key) {
@@ -382,3 +387,27 @@ document.addEventListener('click', function(event) {
 });
 
 
+function getItemWithExpiry(key) {
+    const itemStr = localStorage.getItem(key);
+    if (!itemStr) {
+        return null;
+    }
+    const item = JSON.parse(itemStr);
+    const now = new Date();
+    if (now.getTime() > item.expiry) {
+        localStorage.removeItem(key);  // Xóa dữ liệu nếu đã hết hạn
+        return null;
+    }
+    return item.value;
+}
+
+// Hàm kiểm tra sự tồn tại của token
+function isTokenValid(key) {
+    const token = getItemWithExpiry(key);
+    if(!token){
+        alert("Bạn đã cần đăng nhập lại");
+        window.location.href = '/dang-nhap';
+    }
+    else
+        return ; // Trả về true nếu token còn tồn tại và chưa hết hạn, ngược lại trả về false
+}
