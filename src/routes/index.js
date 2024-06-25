@@ -50,4 +50,7 @@ router.get('/quan-li',(req, res) => {
 router.get('/dang-nhap', (req, res) => {
     res.render('pages/login')
 })
+router.get('/test', (req, res) => {
+    res.render('pages/test')
+})
 module.exports = router

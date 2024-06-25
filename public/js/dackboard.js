@@ -1,4 +1,5 @@
 // Your Firebase configuration
+
 var firebaseConfig = {
     apiKey: "YOUR_API_KEY",
     authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
@@ -23,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const addBtn = document.getElementById('addBtn');
     const updateBtn = document.getElementById('updateBtn');
     const deleteBtn = document.getElementById('deleteBtn');
-    
+
 
     const addCarForm = document.getElementById('addCarForm');
     const updateCarForm = document.getElementById('updateCarForm');
     const deleteCarForm = document.getElementById('deleteCarForm');
-     
+
 
     const forms = [addCarForm, updateCarForm, deleteCarForm];
 
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showForm(deleteCarForm);
     });
 
-   
+
 
     // Default view hides all forms
     hideAllForms();
@@ -66,93 +67,47 @@ function showAlert(message) {
 }
 
 // Add car to Firebase when form is submitted
-document.getElementById('addCarForm').addEventListener('submit', (e) => {
-    isTokenValid("token");
+document.getElementById('addCarForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const key = document.getElementById('key').value;
-    const name = document.getElementById('name').value;
-    const oldPrice = document.getElementById('oldPrice').value;
-    const newPrice = document.getElementById('newPrice').value;
-    const category = document.getElementById('category').value;
-    const power = document.getElementById('power').value;
-    const payload = document.getElementById('payload').value;
-    const size = document.getElementById('size').value;
-    const totalpayload = document.getElementById('totalpayload').value;
-    const carbin = document.getElementById('carbin').value;
-    const imageLink = document.getElementById('imageLink').value;
-    const imageLink2 = document.getElementById('imageLink2').value;
-    const imageLink3 = document.getElementById('imageLink3').value;
-    const imageLink4 = document.getElementById('imageLink4').value;
-    const detail = document.getElementById('detail').value;
+    isTokenValid("token");
 
-    // Check if all fields are filled
-    if (!key || !name || !oldPrice || !newPrice || !category ) {
-        showAlert('Vui lòng điền đủ thông tin.');
-        return;
-    }
+    // Check if password is correct
+    const password = prompt('Nhập mật khẩu:');
 
-    // Check if key already exists within the category
-    database.ref(`cars/${key}`).once('value', (snapshot) => {
-        if (snapshot.exists()) {
-            showAlert('Key này đã được sử dụng.');
+    // Get the password from Firebase
+    const snapshot = await firebase.database().ref('user').once('value');
+    const userData = snapshot.val();
+
+    if (password === userData.pass) {
+        const key = document.getElementById('key').value;
+        const name = document.getElementById('name').value;
+        const oldPrice = document.getElementById('oldPrice').value;
+        const newPrice = document.getElementById('newPrice').value;
+        const category = document.getElementById('category').value;
+        const power = document.getElementById('power').value;
+        const payload = document.getElementById('payload').value;
+        const size = document.getElementById('size').value;
+        const totalpayload = document.getElementById('totalpayload').value;
+        const carbin = document.getElementById('carbin').value;
+        const imageLink = document.getElementById('imageLink').value;
+        const imageLink2 = document.getElementById('imageLink2').value;
+        const imageLink3 = document.getElementById('imageLink3').value;
+        const imageLink4 = document.getElementById('imageLink4').value;
+        const detail = document.getElementById('detail').value;
+
+        // Check if all required fields are filled
+        if (!key || !name || !oldPrice || !newPrice || !category) {
+            alert('Vui lòng điền đủ thông tin.');
+            return;
+        }
+
+        // Check if key already exists within the category
+        const carSnapshot = await database.ref(`cars/${key}`).once('value');
+        if (carSnapshot.exists()) {
+            alert('Key này đã được sử dụng.');
         } else {
             // Add data to Firebase under the category
-            database.ref(`cars/${key}`).set({
-                name: name,
-                oldPrice: oldPrice,
-                newPrice: newPrice,
-                category: category,
-                power: power,
-                payload: payload,
-                totalpayload:totalpayload,
-                size: size,
-                carbin: carbin,
-                imageLink: imageLink,
-                imageLink2: imageLink2,
-                imageLink3: imageLink3,
-                imageLink4: imageLink4,
-                detail:detail
-            }).then(() => {
-                loadCarList(); // Update car list after adding
-            });
-            document.getElementById('addCarForm').reset();
-        }
-    });
-});
-
-// Update car in Firebase when form is submitted
-document.getElementById('updateCarForm').addEventListener('submit', (e) => {
-    isTokenValid("token");
-    e.preventDefault();
-    const key = document.getElementById('updateKey').value;
-    const name = document.getElementById('updateName').value;
-    const oldPrice = document.getElementById('updateOldPrice').value;
-    const newPrice = document.getElementById('updateNewPrice').value;
-    const category = document.getElementById('updateCategory').value;
-    const power = document.getElementById('updatePower').value;
-    const payload = document.getElementById('updatepayload').value;
-    const size = document.getElementById('updatesize').value;
-    const totalpayload = document.getElementById('updatetotalpayload').value;
-    const carbin = document.getElementById('updatecarbin').value;
-    const imageLink = document.getElementById('updateImageLink1').value;
-    const imageLink2 = document.getElementById('updateImageLink2').value;
-    const imageLink3 = document.getElementById('updateImageLink3').value;
-    const imageLink4 = document.getElementById('updateImageLink4').value;
-    const updatedetail = document.getElementById('updatedetail').value;
-
-    // Check if all fields are filled
-    if (!key || !name || !oldPrice || !newPrice || !category ) {
-        showAlert('Vui lòng điền đủ thông tin.');
-        return;
-    }
-
-    // Check if key exists within the category
-    database.ref(`cars/${key}`).once('value', (snapshot) => {
-        if (!snapshot.exists()) {
-            showAlert('Key này không tồn tại.');
-        } else {
-            // Update data in Firebase under the category
-            database.ref(`cars/${key}`).update({
+            await database.ref(`cars/${key}`).set({
                 name: name,
                 oldPrice: oldPrice,
                 newPrice: newPrice,
@@ -166,13 +121,82 @@ document.getElementById('updateCarForm').addEventListener('submit', (e) => {
                 imageLink2: imageLink2,
                 imageLink3: imageLink3,
                 imageLink4: imageLink4,
-                detail:updatedetail
-            }).then(() => {
-                loadCarList(); // Update car list after updating
+                detail: detail
             });
-            document.getElementById('updateCarForm').reset();
+            alert('Thêm xe thành công.');
+            loadCarList(); // Update car list after adding
+            document.getElementById('addCarForm').reset();
         }
-    });
+    } else {
+        alert('Mật khẩu không đúng.');
+    }
+});
+// Update car in Firebase when form is submitted
+document.getElementById('updateCarForm').addEventListener('submit', async (e) => {
+    isTokenValid("token");
+    e.preventDefault();
+    // Check if password is correct
+    const password = prompt('Nhập mật khẩu:');
+
+    // Get the password from Firebase
+    const snapshot = await firebase.database().ref('user').once('value');
+    const userData = snapshot.val();
+
+    if (password === userData.pass) {
+        const key = document.getElementById('updateKey').value;
+        const name = document.getElementById('updateName').value;
+        const oldPrice = document.getElementById('updateOldPrice').value;
+        const newPrice = document.getElementById('updateNewPrice').value;
+        const category = document.getElementById('updateCategory').value;
+        const power = document.getElementById('updatePower').value;
+        const payload = document.getElementById('updatepayload').value;
+        const size = document.getElementById('updatesize').value;
+        const totalpayload = document.getElementById('updatetotalpayload').value;
+        const carbin = document.getElementById('updatecarbin').value;
+        const imageLink = document.getElementById('updateImageLink1').value;
+        const imageLink2 = document.getElementById('updateImageLink2').value;
+        const imageLink3 = document.getElementById('updateImageLink3').value;
+        const imageLink4 = document.getElementById('updateImageLink4').value;
+        const updatedetail = document.getElementById('updatedetail').value;
+
+        // Check if all fields are filled
+        if (!key || !name || !oldPrice || !newPrice || !category) {
+            showAlert('Vui lòng điền đủ thông tin.');
+            return;
+        }
+
+        // Check if key exists within the category
+        database.ref(`cars/${key}`).once('value', (snapshot) => {
+            if (!snapshot.exists()) {
+                showAlert('Key này không tồn tại.');
+            } else {
+                // Update data in Firebase under the category
+                database.ref(`cars/${key}`).update({
+                    name: name,
+                    oldPrice: oldPrice,
+                    newPrice: newPrice,
+                    category: category,
+                    power: power,
+                    payload: payload,
+                    totalpayload: totalpayload,
+                    size: size,
+                    carbin: carbin,
+                    imageLink: imageLink,
+                    imageLink2: imageLink2,
+                    imageLink3: imageLink3,
+                    imageLink4: imageLink4,
+                    detail: updatedetail
+                }).then(() => {
+                    loadCarList(); // Update car list after updating
+                });
+                alert('Sửa thành công.');
+                document.getElementById('updateCarForm').reset();
+            }
+        });
+    } else {
+        alert('Mật khẩu không đúng.');
+    }
+
 });
 
 // Function to add a car to the table
@@ -200,7 +224,7 @@ function addCarToTable(key, car) {
 }
 
 // Event listener to populate update form when row is clicked
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const row = event.target.closest('tr.clickable-row');
     if (row) {
         const key = row.dataset.key;
@@ -260,26 +284,39 @@ loadCarList();
 
 
 // Delete car from Firebase when form is submitted
-deleteCarForm.addEventListener('submit', (e) => {
+deleteCarForm.addEventListener('submit', async (e) => {
     isTokenValid("token");
     e.preventDefault();
-    const key = document.getElementById('deleteKey').value;
-    if (!key) {
-        showAlert('Vui lòng điền đủ thông tin.');
-        return;
-    }
-    // Check if key exists
-    database.ref('cars/' + key).once('value', (snapshot) => {
-        if (!snapshot.exists()) {
-            showAlert('Key này không tồn tại.');
-        } else {
-            // Delete data from Firebase
-            database.ref('cars/' + key).remove().then(() => {
-                loadCarList(); // Reload car list after deleting
-            });
-            deleteCarForm.reset();
+
+    const password = prompt('Nhập mật khẩu:');
+
+    // Get the password from Firebase
+    const snapshot = await firebase.database().ref('user').once('value');
+    const userData = snapshot.val();
+
+    if (password === userData.pass) {
+        const key = document.getElementById('deleteKey').value;
+        if (!key) {
+            showAlert('Vui lòng điền đủ thông tin.');
+            return;
         }
-    });
+        // Check if key exists
+        database.ref('cars/' + key).once('value', (snapshot) => {
+            if (!snapshot.exists()) {
+                showAlert('Key này không tồn tại.');
+            } else {
+                // Delete data from Firebase
+                database.ref('cars/' + key).remove().then(() => {
+                    loadCarList(); // Reload car list after deleting
+                });
+                alert('Xóa thành công.');
+                deleteCarForm.reset();
+            }
+        });
+    }else {
+        alert('Mật khẩu không đúng.');
+    }
+
 });
 
 function displayCategories() {
@@ -330,40 +367,40 @@ function fetchCategories(callback) {
 
 
 // Sự kiện khi click vào input "Danh Mục"
-document.getElementById('category').addEventListener('click', function() {
+document.getElementById('category').addEventListener('click', function () {
     const dropdownContent = document.getElementById('dropdownContent');
     dropdownContent.innerHTML = ''; // Xóa các lựa chọn hiện tại
 
-    fetchCategories(function(categories) {
+    fetchCategories(function (categories) {
         categories.forEach((category, index) => { // Sửa 'categorie' thành 'categories'
             const option = document.createElement('div');
             option.textContent = `${category}`;
-            option.addEventListener('click', function() {
+            option.addEventListener('click', function () {
                 document.getElementById('category').value = category; // Đặt giá trị cho input khi chọn lựa chọn
                 dropdownContent.style.display = 'none'; // Ẩn dropdown sau khi chọn
             });
             dropdownContent.appendChild(option);
         });
-    
+
         // Hiển thị dropdown
         dropdownContent.style.display = 'block';
     });
 });
-document.getElementById('updateCategory').addEventListener('click', function() {
+document.getElementById('updateCategory').addEventListener('click', function () {
     const dropdownContent = document.getElementById('dropdownContent1');
     dropdownContent.innerHTML = ''; // Xóa các lựa chọn hiện tại
 
-    fetchCategories(function(categories) {
+    fetchCategories(function (categories) {
         categories.forEach((category, index) => { // Sửa 'categorie' thành 'categories'
             const option = document.createElement('div');
             option.textContent = `${category}`;
-            option.addEventListener('click', function() {
+            option.addEventListener('click', function () {
                 document.getElementById('updateCategory').value = category; // Đặt giá trị cho input khi chọn lựa chọn
                 dropdownContent.style.display = 'none'; // Ẩn dropdown sau khi chọn
             });
             dropdownContent.appendChild(option);
         });
-    
+
         // Hiển thị dropdown
         dropdownContent.style.display = 'block';
     });
@@ -371,14 +408,14 @@ document.getElementById('updateCategory').addEventListener('click', function() {
 
 
 // Đóng dropdown khi click bên ngoài
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const dropdownContent = document.getElementById('dropdownContent');
     const categoryInput = document.getElementById('category');
     if (!categoryInput.contains(event.target) && !dropdownContent.contains(event.target)) {
         dropdownContent.style.display = 'none';
     }
 });
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const dropdownContent = document.getElementById('dropdownContent1');
     const categoryInput = document.getElementById('updateCategory');
     if (!categoryInput.contains(event.target) && !dropdownContent.contains(event.target)) {
@@ -404,10 +441,10 @@ function getItemWithExpiry(key) {
 // Hàm kiểm tra sự tồn tại của token
 function isTokenValid(key) {
     const token = getItemWithExpiry(key);
-    if(!token){
+    if (!token) {
         alert("Bạn đã cần đăng nhập lại");
         window.location.href = '/dang-nhap';
     }
     else
-        return ; // Trả về true nếu token còn tồn tại và chưa hết hạn, ngược lại trả về false
+        return; // Trả về true nếu token còn tồn tại và chưa hết hạn, ngược lại trả về false
 }

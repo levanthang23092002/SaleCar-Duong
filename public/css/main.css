@@ -108,12 +108,37 @@ h6 {
 .social-links .txt{
   font-size: 22px !important;
   width: auto !important;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
+.hidden-phone {
+  display: none;
+}
+.color-change {
+  animation: colorChange 0.5s infinite;
+}
+
+@keyframes colorChange {
+  0% {
+    color: white;
+  }
+  50% {
+    color: var(--default-color-p);
+  }
+  100% {
+    color: rgb(72, 131, 250);
+  }
+}
+
 @media (max-width: 575px) {
   .header .topbar {
     height: 100px;
   }
- 
+  .hidden-phone {
+    display: inline;
+    font-size: 16px;
+  }
   .header .topbar .contact-info{
     justify-content: center;
     margin-left: auto;

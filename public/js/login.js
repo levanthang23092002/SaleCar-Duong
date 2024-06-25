@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (userData) {
                 if (userData.email == email) {
-                    if (userData.password = password) {
+                    if (userData.pass == password) {
                     const token = generateRandomString();  // Giả sử bạn có một token cần lưu
                     setItemWithExpiry('token', token, 3600);
                    
