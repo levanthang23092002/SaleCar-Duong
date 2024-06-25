@@ -1574,8 +1574,10 @@ section,
 }
 
 @media (max-width: 575px) {
+
   .clients .swiper-slide{
     margin-right: 5px;
+    
   }
   .clients .swiper-slide img {
     transition: 0.3s;
@@ -2152,6 +2154,17 @@ span#key {
 .portfolio-details .portfolio-description p {
   padding: 0;
   color: rgba(0, 179, 48, 0.3); /* Màu chữ phần mô tả */
+}
+
+@media (max-width: 575px) {
+  .portfolio-details{
+    padding-top: 10px;
+  }
+  .portfolio-details .portfolio-details-slider .swiper-slide img {
+    width: 90%;
+    margin: 0 auto;
+    height: 350px;
+  }
 }
 
 /*--------------------------------------------------------------
