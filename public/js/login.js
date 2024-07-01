@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const email = document.getElementById('email').value;
         const pass = document.getElementById('password').value;
-        const password = pass.toString();
+        
         // Truy vấn Realtime Database để kiểm tra thông tin đăng nhập
         firebase.database().ref('user').once('value').then((snapshot) => {
             const userData = snapshot.val();
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (userData) {
                 if (userData.email == email) {
-                    if (userData.pass == password) {
+                    if (userData.pass == pass) {
                     const token = generateRandomString();  // Giả sử bạn có một token cần lưu
                     setItemWithExpiry('token', token, 3600);
                    
